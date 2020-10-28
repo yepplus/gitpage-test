@@ -1,18 +1,25 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <gp-player/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import GpPlayer from '@/components/GpPlayer'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    GpPlayer
+  },
+  mounted() {
+      let token = localStorage.getItem("gitpage_token");
+      if (token == null || token == "null") {
+        token = prompt("github token");
+        localStorage.setItem("gitpage_token", "Bearer " + token);
+        console.log(token);
+      }
   }
 }
 </script>
